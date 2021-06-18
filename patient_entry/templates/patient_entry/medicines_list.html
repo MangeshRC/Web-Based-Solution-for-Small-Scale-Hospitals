@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+{% block content %}
+
+
+{% if medicines_list %}
+<div class="container">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <th>Sr.No.</th>
+        <th>Medicine Name</th>
+        <th>Type</th>
+        <th><a class="btn btn-light" href="{% url 'add_medicine' %}" style="float: right;">Add New Medicine</a></th>
+      </thead>
+      {% for medicine in medicines_list %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>  <a href="{% url 'medicine_detail' pk=medicine.pk %}">{{medicine.Medicine_name}}</a>  </td>
+        <td>{{medicine.Tablet_or_Syrup}}</td>
+        <td><a href="{% url 'medicine_update' pk=medicine.pk %}" class="btn btn-dark" style="float: right;">Edit</a></td>
+      </tr>
+      {% empty %}
+        <h1>No Medicines Added Yet</h1>
+      {% endfor %}
+    </table>
+</div>
+{% else %}
+  <h2>No Medicines Added yet</h2>
+  <a class="btn btn-dark" href="{% url 'add_medicine' %}" style="margin-top:5%;">Add New Medicine</a>
+{% endif %}
+{% endblock  %}

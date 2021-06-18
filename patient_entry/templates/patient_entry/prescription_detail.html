@@ -1,0 +1,77 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container">
+<ul>
+<li><h3>Prescription Details</h3>
+<table class="table table-bordered">
+  <tr>
+    <td><b>Patient: </b></td>
+    <td> {{ prescription.patient }}</td>
+  </tr>
+  <tr>
+    <td><b>Blood Pressure:</b></td>
+    <td> {{ prescription.blood_pressure }}</td>
+  </tr>
+  <tr>
+    <td><b>Visit Date:</b></td>
+    <td> {{ prescription.visit_date }}</td>
+  </tr>
+  <tr>
+    <td><b>C/O:</b></td>
+    <td> {{ prescription.C_O }}</td>
+  </tr>
+  <tr>
+    <td><b>O/E</b></td>
+    <td>
+      <ul>
+      <li>RS: {{ prescription.RS }}</li>
+      <li>CUS: {{ prescription.CUS }}</li>
+      <li>UT: {{ prescription.ut }}</li>
+      <li>VX: {{ prescription.vx }}</li>
+      <li>PIV: {{ prescription.PIV }}</li>
+      <li>FHS: {{ prescription.FHS }}</li>
+      <li>Other Comments: {{ prescription.other_comments }}</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td><b>H/O</b></td>
+    <td> {{ prescription.H_O }}</td>
+  </tr>
+  <tr>
+    <td><b>Fees:</b></td>
+    <td>{{ prescription.fees }}</td>
+  </tr>
+</table>
+<br>
+<br>
+</li>
+<li><h3>Medicines Prescribed</h3>
+<table class="table table-hover">
+  <thead class="thead-dark">
+  <th>Medicine</th>
+  <th>Quantity</th>
+  <th>Dose</th>
+  {% for prescription_record in prescription.prescription_prescription_record.all  %}
+    {% if prescription_record.quantity %}
+      <tr>
+        <td>{{prescription_record.medicine}}</td>
+        <td>{{prescription_record.quantity}}</td>
+          {% if prescription_record.dose == '1' %}
+            <td>Once a day</td>
+          {% elif prescription_record.dose == '2' or prescription_record.dose == '3' %}
+            <td>{{prescription_record.dose}} times/day</td>
+          {% else %}
+            <td>{{prescription_record.dose}}</td>
+          {% endif %}
+      </tr>
+    {% endif %}
+  {% endfor %}
+  </table>
+</li>
+</ul>
+</div>
+
+
+{% endblock %}

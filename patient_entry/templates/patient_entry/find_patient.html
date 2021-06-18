@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <table class="table table-borderless">
+      <tr>
+        <td>{{ form }}</td>
+      </tr>
+    </table>
+    <input id="but" type="submit" class="btn btn-dark" name="" value="Find">
+</form>
+<style media="screen">
+  #but{
+    position: absolute;
+    top: 27.5%;
+    left: 50%;
+  }
+</style>
+
+{% endblock content %}

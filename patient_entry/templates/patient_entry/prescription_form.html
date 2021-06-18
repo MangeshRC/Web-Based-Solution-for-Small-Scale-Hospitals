@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="container">
+  <h1>New Prescription</h1>
+  <form class="post-form" method="POST">
+      <table class="table table-borderless">
+        <span class="border">
+          {{ form }}
+          </span>
+      </table>
+      {% csrf_token %}
+    <button id="button1" type="submit" class="btn btn-dark" value="Submit">Proceed to Add Medicines</button>
+  </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <table class="table table-bordered">
+      <tr>
+        <td>{{ form }}</td>
+      </tr>
+    </table>
+    <input id="but" type="submit" class="btn btn-dark" name="" value="Find">
+</form>
+
+
+{% if obj %}
+<table class="table table-sm">
+  <thead class="thead-dark">
+    <th>Patient Name</th>
+    <th>Age</th>
+    <th>Address</th>
+    <th>Visit Date</th>
+    <th>Fees</th>
+  </thead>
+  {% for data in obj %}
+  <tr>
+    <td> <a href="{% url 'patient_detail' pk=data.patient.pk %}">{{data.patient.patient_name}}</a> </td>
+    <td>{{data.patient.patient_age}}</td>
+    <td>{{data.patient.patient_address}}</td>
+    <td>{{data.visit_date}}</td>
+    <td>{{data.fees}}</td>
+  </tr>
+  {% endfor %}
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><b>Total Collection</b></td>
+    <td>{{ total_collection }} /-</td>
+  </tr>
+</table>
+{% endif %}
+
+<style media="screen">
+  #but{
+    margin-bottom: 3%;
+    }
+</style>
+
+{% endblock content %}

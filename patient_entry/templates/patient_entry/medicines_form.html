@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="container">
+  <h1>New Medicine</h1>
+  <form class="form" method="POST">
+      <table class="table table-borderless">
+        <span class="border">
+          {{ form }}
+          </span>
+      </table>
+      {% csrf_token %}
+    <button type="submit" class="btn btn-dark" value="Submit">Submit</button>
+  </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="table">
+<table>
+  <th>Medicine Name</th>
+  <th>Type</th>
+  <th>Ingredient_Drugs</th>
+  <tr>
+    <td> {{ medicines.Medicine_name }}</td>
+    <td> {{ medicines.Tablet_or_Syrup }}</td>
+    <td> {{ medicines.Ingredient_Drugs }}</td>
+  </tr>
+</table>
+<br>
+<a href="{% url 'medicine_update' pk=medicines.pk %}" class="btn btn-dark">Edit</a>
+</div>
+
+{% endblock %}

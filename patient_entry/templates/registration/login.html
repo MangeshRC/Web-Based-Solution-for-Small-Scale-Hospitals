@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+  <div class="jumbotron">
+
+    <h2>Enter Login Details:</h2>
+    {% if form.errors %}
+        <p>Your username and password didn't match.Please try again!</p>
+    {% endif %}
+
+    <form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+      <table class="table">
+        {{form}}
+      </table>
+
+        <input type="submit" class='btn btn-dark' value="Login" />
+        <input type="hidden" name="next" value="{{ request.GET.next }}" />
+    </form>
+  </div>
+{% endblock %}

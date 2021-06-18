@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <table class="table table-bordered">
+      <tr>
+        <td>{{ form }}</td>
+      </tr>
+    </table>
+    <input id="but" type="submit" class="btn btn-dark" name="" value="Find">
+</form>
+
+{% if obj %}
+<table class="table table-sm">
+<thead class="thead-dark">
+<th>Sr.No</th>
+<th>Patient Name</th>
+<th>Age</th>
+<th>Address</th>
+<th>Visit Date</th>
+</thead>
+{% for data in obj %}
+<tr>
+<td>{{forloop.counter}}</td>
+<td> <a href="{% url 'patient_detail' pk=data.patient.pk %}">{{data.patient.patient_name}}</a> </td>
+<td>{{data.patient.patient_age}}</td>
+<td>{{data.patient.patient_address}}</td>
+<td>{{data.visit_date}}</td>
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+
+<style media="screen">
+  #but{
+    margin-bottom: 3%;
+  }
+</style>
+{% endblock content %}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Print Prescription</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/prescription.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="patient_id"><a href="{% url 'index' %}">{{patient_id}}/{{prescripion_id}}</a></div>
+      <p id="date"></p>
+      <div class="patient_name">{{patient_name}}</div>
+      <div class="patient_address">{{patient_address}}</div>
+      <div class="patient_age">Age:{{patient_age}}</div>
+      <div class="blood_pressure">B.P.:{{blood_pressure}} mm/hg</div>
+      {% if pres.gravida and pres.para and pres.abortions %}
+      <div class="gravida_history">
+        <p><b>G<sub>{{pres.gravida}}</sub>P<sub>{{pres.para}}</sub>A<sub>{{pres.abortions}}</sub></b></p>
+      </div>
+      {% endif %}
+      <div class="medicines">
+        <table class="table table-sm">
+          <th>Medicine</th>
+          <th>Quantity</th>
+          <th>Dose</th>
+          {% for medic in medics %}
+          {% if medic.quantity %}
+            <tr>
+              <td>{{medic.medicine}}</td>
+              <td>{{medic.quantity}}</td>
+              {% if medic.dose == '1' %}
+                <td>-----1-----</td>
+              {% elif medic.dose == '2'%}
+                <td>1---------1</td>
+              {% elif medic.dose == '3'%}
+                <td>1----1----1</td>
+              {% else %}
+                <td>{{medic.quantity}}</td>
+              {% endif %}
+            </tr>
+          {% endif %}
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    <div class="Others">
+      <div class="OE">
+        <table class="table table-sm">
+          {% if pres.C_O %}
+          <tr>
+            <td><b>C/O:</b></td>
+            <td>{{pres.C_O}}</td>
+          </tr>
+          {% endif %}
+          {% if pres.H_O %}
+          <tr>
+            <td><b>H/O:</b></td>
+            <td>{{pres.H_O}}</td>
+          </tr>
+          {% endif %}
+          {% if pres.ut or pres.vx or pres.FHS or pres.PIV %}
+          <tr>
+            <td><b>O/E:</b></td>
+            <td></td>
+          </tr>
+          {% if pres.RS %}
+          <tr>
+            <td><b>RS:</b></td>
+            <td>{{pres.RS}}</td>
+          </tr>
+          {% endif %}
+          {% if pres.CVS %}
+          <tr>
+            <td><b>CVS:</b></td>
+            <td>{{pres.CVS}}</td>
+          </tr>
+          {% endif %}
+          {% if pres.ut %}
+          <tr>
+            <td><b>UT:</b></td>
+            <td>{{pres.ut}} Weeks</td>
+          </tr>
+          {% endif %}
+          {% if pres.vx %}
+          <tr>
+            <td><b>VX:</b></td>
+            <td>{{pres.vx}}</td>
+          </tr>
+          {% endif %}
+          {% if pres.FHS %}
+          <tr>
+            <td><b>FHS:</b></td>
+            <td>{{pres.FHS}}</td>
+          </tr>
+          {% endif %}
+          {% if pres.PIV %}
+          <tr>
+            <td><b>PIV:</b></td>
+            <td>{{pres.PIV}}</td>
+          </tr>
+          {% endif %}
+          {% endif %}
+        </table>
+      </div>
+    </div>
+    <div class="other_comments">
+      <p><b>Other Comments: </b>{{pres.other_comments}}</p>
+    </div>
+    <style>
+      .patient_id{
+        position: absolute;
+        top: 2%;
+        left: 80%;
+      }
+      .patient_name{
+        position: absolute;
+        top: 20%;
+        left: 37%;
+      }
+      .patient_address{
+        position: absolute;
+        top: 23%;
+        left: 37%;
+      }
+      .patient_age{
+        position: absolute;
+        top: 23.5%;
+        left: 69%;
+      }
+      #date{
+        position: absolute;
+        top: 18%;
+        left: 81.5%;
+      }
+      .blood_pressure{
+        position: absolute;
+        top: 23.5%;
+        left: 80%;
+      }
+      .gravida_history{
+        position: absolute;
+        top: 47%;
+        left: 90%;
+      }
+      .medicines{
+        position: absolute;
+        top: 35%;
+        left: 32%;
+      }
+      .Others{
+        position: absolute;
+        top: 52%;
+        left: 75%;
+        width: 20%;
+        height: 33%;
+      }
+      .other_comments{
+        position: absolute;
+        top: 70%;
+        left: 33%;
+      }
+    </style>
+    <script type="text/javascript">
+      n =  new Date();
+      y = n.getFullYear();
+      m = n.getMonth() + 1;
+      d = n.getDate();
+      document.getElementById("date").innerHTML = d + "/" + m + "/" + y;
+
+    </script>
+  </body>
+</html>

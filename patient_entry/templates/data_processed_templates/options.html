@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="list-group">
+  <a href="{% url 'processed_data:search_by_address' %}"
+    class="list-group-item list-group-item-action list-group-item-dark">Search with Patient's Address</a>
+  <a href="{% url 'processed_data:search_by_name' %}"
+    class="list-group-item list-group-item-action list-group-item-dark">Search with Patient Name</a>
+  <a href="{% url 'processed_data:see_collection_for_duration' %}"
+    class="list-group-item list-group-item-action list-group-item-dark">See Collection for a Duration</a>
+  <a href="{% url 'processed_data:collection_for_day' %}"
+  class="list-group-item list-group-item-action list-group-item-dark">See Collection for a day</a>
+</div>
+{% endblock content %}

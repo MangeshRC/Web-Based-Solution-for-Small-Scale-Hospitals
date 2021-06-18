@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container">
+  <h1>New Patient</h1>
+  <form class="form" method="POST">
+      <table class="table table-bordered table-dark">
+        <span class="border">
+          {{ form }}
+          </span>
+      </table>
+      {% csrf_token %}
+    <button id="button1" type="submit" class="btn btn-dark" value="Submit">Next</button>
+  </form>
+</div>
+
+<style media="screen">
+/* .form{
+    margin-left:10%;
+    margin-right: 15%;
+    border: 4px solid black;
+}
+
+
+
+.table{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 10%;
+    align-self: center;
+    width: 80%;
+} */
+
+h1{
+  text-align: center;
+}
+
+#button1{
+    margin-left:50%;
+    margin-bottom: 2%;
+}
+
+</style>
+
+
+
+{% endblock  %}

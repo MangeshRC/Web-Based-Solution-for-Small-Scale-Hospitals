@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="container">
+  <h1>Add Medicine</h1>
+  <form class="form" method="POST">
+      <table class="table table-borderless">
+        <span class="border">
+          {{ form }}
+          </span>
+      </table>
+      {% csrf_token %}
+    <button id="id1" type="submit" class="btn btn-dark" value="Submit" style="float: right;">Add Medicine</button>
+  </form>
+</div>
+<table id='list' class="table table-striped">
+    <th>Medicine</th>
+    <th>Quantity</th>
+    <th>Dose</th>
+    <th></th>
+    {% for medicine in Medicine1 %}
+    {% if medicine.quantity %}
+    <tr>
+      <td>{{medicine.medicine}}</td>
+      <td>{{medicine.quantity}}</td>
+          {% if medicine.dose == '1' %}
+            <td>Once a day</td>
+          {% elif medicine.dose == '2' or medicine.dose == '3'%}
+            <td>{{medicine.dose}} times/day</td>
+          {% else %}
+            <td>{{medicine.dose}}</td>
+          {% endif %}
+        <td> <a href="{% url 'prescription_record_delete' pk=medicine.pk %}">Remove</a> </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+<style media="screen">
+  #list{
+    margin-top: 10%;
+  }
+</style>
+<a id="id2" class="btn btn-dark" href="{% url 'print_prescription' pk=prescription_record.pk %}" style="float: right;">Print Prescription</a>
+
+
+
+{% endblock content %}
