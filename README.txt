@@ -1,3 +1,6 @@
+# Web based Software Solution for small scale Hospitals
+
+
 1. Go to the project directory
 
 2. create superuser using "python manage.py createsuperuser"
